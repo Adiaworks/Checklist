@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    var checklist: String
+    var checklistOne: String
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text(checklist)
+                .bold()
+            Text(checklistOne)
+                .padding()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(
+            checklist: "Checklist",
+            checklistOne: "Milk"
+        )
     }
 }
