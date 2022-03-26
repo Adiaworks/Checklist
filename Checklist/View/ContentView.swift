@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    var checklist: String
-    var checklistOne: String
+    var item: ItemViewModel
     
     var body: some View {
         VStack {
-            Text(checklist)
+            Text("checklist")
                 .bold()
-            Text(checklistOne)
+            Text(item.itemTitle)
                 .padding()
         }
     }
@@ -23,9 +22,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(
-            checklist: "Checklist",
-            checklistOne: "Milk"
+        ContentView(item: ItemViewModel(item:
+            Item(title: "Watermelon"))
         )
     }
 }

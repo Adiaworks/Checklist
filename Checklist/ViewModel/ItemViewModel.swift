@@ -7,7 +7,7 @@
 struct ItemViewModel {
     var item: Item
     
-    var itemTitile: String {
+    var itemTitle: String {
         item.title
     }
 }
