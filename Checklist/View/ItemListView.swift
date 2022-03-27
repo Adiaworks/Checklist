@@ -13,15 +13,17 @@ struct ItemListView: View {
     var body: some View {
         List(itemList) { itemViewModel in
             NavigationLink(itemViewModel.item.title){
-                ItemDetailView(item: itemViewModel)
+                ItemDetailView(item: itemViewModel).navigationTitle("Detail View")
             }
-        }
+        }.navigationTitle("Checklist")
     }
 }
 
 
 struct ItemListView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemListView(itemList: [])
+        NavigationView {
+        ItemListView(itemList: [ItemViewModel(item: Item(title: "Peach"))])
+        }
     }
 }
