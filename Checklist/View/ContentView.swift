@@ -14,10 +14,9 @@ struct ContentView: View {
         VStack {
             Text("Checklist").bold()
         
-        List(itemList) { item in
-            Text(item.itemTitle)
-            .padding()
-        }
+            NavigationView {
+                ItemListView(itemList: itemList)
+            }
         }
     }
 }
@@ -34,3 +33,6 @@ struct ContentView_Previews: PreviewProvider {
         ])
     }
 }
+
+
+
