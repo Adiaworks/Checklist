@@ -11,8 +11,10 @@ struct ItemListView: View {
     var itemList: [ItemViewModel]
     
     var body: some View {
-        List(itemList) {
-            ItemDetailView(item: $0)
+        List(itemList) { itemViewModel in
+            NavigationLink(itemViewModel.item.title){
+                ItemDetailView(item: itemViewModel)
+            }
         }
     }
 }
