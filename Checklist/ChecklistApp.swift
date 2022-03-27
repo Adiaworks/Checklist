@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct ChecklistApp: App {
-    var viewModel = ItemViewModel(
-        item: Item(title: "Watermelon"))
+    var viewModel = [ItemViewModel(
+        item: Item(title: "Watermelon"))]
     
     var body: some Scene {
         WindowGroup {
-            ContentView(item: viewModel)
+            ContentView(itemList: viewModel)
         }
     }
 }

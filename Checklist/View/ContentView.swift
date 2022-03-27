@@ -8,22 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    var item: ItemViewModel
+    var itemList: [ItemViewModel]
     
     var body: some View {
-        VStack {
-            Text("checklist")
-                .bold()
-            Text(item.itemTitle)
-                .padding()
-        }
+        Text(itemList[0].itemTitle)
+            .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(item: ItemViewModel(item:
-            Item(title: "Watermelon"))
+        ContentView(itemList: [ItemViewModel(item:
+            Item(title: "Watermelon"))]
         )
     }
 }
