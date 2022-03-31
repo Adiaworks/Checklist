@@ -15,10 +15,16 @@ struct ItemListView: View {
     ///The body of the view
     var body: some View {
         List(itemList) { itemViewModel in
-            NavigationLink(itemViewModel.item.title){
-                ItemDetailView(item: itemViewModel).navigationTitle("Detail View")
-            }
+            HStack {
+                ///Display the item title
+                Text(itemViewModel.item.title)
+                Spacer()
+                ///Check if the length of item title is less than six, display a checkmark
+                if (itemViewModel.item.title.count < 6) {
+                    Image(systemName: "checkmark")
+                }
         }.navigationTitle("Checklist")
+        }
     }
 }
 
@@ -26,7 +32,11 @@ struct ItemListView: View {
 struct ItemListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-        ItemListView(itemList: [ItemViewModel(item: Item(title: "Peach"))])
+        ItemListView(itemList: [
+            ItemViewModel(item: Item(title: "Peaches")),
+            ItemViewModel(item: Item(title: "Melon")),
+            ItemViewModel(item: Item(title: "Apple")),
+        ])
         }
     }
 }
