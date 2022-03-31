@@ -8,6 +8,8 @@
 import SwiftUI
 
 @main
+
+///Define a new struct for this App
 struct ChecklistApp: App {
     var viewModel = [
         ItemViewModel(item: Item(title: "Watermelon")),

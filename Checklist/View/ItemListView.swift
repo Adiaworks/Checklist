@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+///Define a new struct for displaying the item list
 struct ItemListView: View {
+    ///This is an ItemViewModel
     var itemList: [ItemViewModel]
     
+    ///The body of the view
     var body: some View {
         List(itemList) { itemViewModel in
             NavigationLink(itemViewModel.item.title){
@@ -19,7 +22,7 @@ struct ItemListView: View {
     }
 }
 
-
+//Define a new struct for previews
 struct ItemListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

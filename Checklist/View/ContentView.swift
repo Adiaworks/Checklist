@@ -7,9 +7,13 @@
 
 import SwiftUI
 
+///Define a new struct
 struct ContentView: View {
+    
+    ///This is an ItemViewModel
     var itemList: [ItemViewModel]
     
+    ///This ia the body of the view
     var body: some View {
         VStack {
             Text("Checklist").bold()
@@ -21,6 +25,7 @@ struct ContentView: View {
     }
 }
 
+///Define a new struct
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(itemList: [
