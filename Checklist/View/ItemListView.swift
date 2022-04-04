@@ -23,7 +23,7 @@ struct ItemListView: View {
                 if (itemViewModel.item.title.count < 6) {
                     Image(systemName: "checkmark")
                 }
-        }.navigationTitle("Checklist")
+            }.navigationTitle("Checklist")
         }
     }
 }
