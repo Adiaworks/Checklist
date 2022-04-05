@@ -13,7 +13,9 @@ struct ItemListView: View {
     var body: some View {
         List {
             ForEach(itemLists) { itemList in
-                ItemTitleView(model: itemList)
+                NavigationLink(destination: ItemTitleView(model: itemList)) {
+                    Text("To details")
+                }
             }
             .onDelete { itemNumbers in
                 itemLists.remove(atOffsets: itemNumbers)
