@@ -2,41 +2,29 @@
 //  ItemListView.swift
 //  Checklist
 //
-//  Created by Wen Lyu on 27/3/2022.
+//  Created by Wen Lyu on 5/4/2022.
 //
 
 import SwiftUI
 
-///Define a new struct for displaying the item list
 struct ItemListView: View {
-    ///This is an ItemViewModel
-    var itemList: [ItemViewModel]
+    @Binding var itemLists: [ItemViewModel]
     
-    ///The body of the view
     var body: some View {
-        List(itemList) { itemViewModel in
-            HStack {
-                ///Display the item title
-                Text(itemViewModel.item.title)
-                Spacer()
-                ///Check if the length of item title is less than six, display a checkmark
-                if (itemViewModel.item.title.count < 6) {
-                    Image(systemName: "checkmark")
-                }
-            }.navigationTitle("Checklist")
+        List {
+            ForEach(itemLists) { itemList in
+                ItemTitleView(model: itemList)
+            }
+            .onDelete { itemNumbers in
+                itemLists.remove(atOffsets: itemNumbers)
+            }
         }
-    }
-}
-
-//Define a new struct for previews
-struct ItemListView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-        ItemListView(itemList: [
-            ItemViewModel(item: Item(title: "Peaches")),
-            ItemViewModel(item: Item(title: "Melon")),
-            ItemViewModel(item: Item(title: "Apple")),
-        ])
-        }
+        .navigationBarItems(leading: EditButton(), trailing: Button(action: {
+            withAnimation {
+                self.itemLists.append(ItemViewModel(item: Item(title: "Orange")))
+            }
+        }, label: {
+            Image(systemName: "plus")
+        }))
     }
 }

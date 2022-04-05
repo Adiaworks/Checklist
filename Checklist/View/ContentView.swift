@@ -16,28 +16,10 @@ struct ContentView: View {
     ///This ia the body of the view
     var body: some View {
         NavigationView {
-            List {
-                ForEach(itemLists) { itemList in
-                    Text("\(itemList.itemTitle)")
-                }
-                .onDelete { itemNumbers in
-                    itemLists.remove(atOffsets: itemNumbers)
-                }
-            }
-            .navigationTitle("Checklist")
-            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
-                    withAnimation {
-                        self.itemLists.append(ItemViewModel(item: Item(title: "Orange")))
-                    }
-            }, label: {
-                Image(systemName: "plus")
-            }
-                                                                       ))
+            ItemListView(itemLists: $itemLists)
+                .navigationTitle("Checklist")
         }
     }
 }
-
-
-
 
 
