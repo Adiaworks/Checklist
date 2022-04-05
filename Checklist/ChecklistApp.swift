@@ -11,17 +11,12 @@ import SwiftUI
 
 ///Define a new struct for this App
 struct ChecklistApp: App {
-    var viewModel = [
-        ItemViewModel(item: Item(title: "Watermelon")),
-        ItemViewModel(item: Item(title: "Peach")),
-        ItemViewModel(item: Item(title: "Rockmelon")),
-        ItemViewModel(item: Item(title: "Strawberry")),
-        ItemViewModel(item: Item(title: "Apple")),
-    ]
+    @State var viewModel: [ItemViewModel] = []
     
     var body: some Scene {
         WindowGroup {
-            ContentView(itemList: viewModel)
+            ///Add a $ sign so define a getter and setter for the viewModel which is binded in the contentview 
+            ContentView(itemLists: $viewModel)
         }
     }
 }

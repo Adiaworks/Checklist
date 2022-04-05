@@ -11,13 +11,17 @@ import SwiftUI
 struct ContentView: View {
     
     ///This is an ItemViewModel
-    var itemList: [ItemViewModel]
+    @Binding var itemLists: [ItemViewModel]
     
     ///This ia the body of the view
     var body: some View {
-        VStack {
-            NavigationView {
-                ItemListView(itemList: itemList)
+        List {
+            ForEach(itemLists) { itemList in
+                Text("\(itemList.itemTitle)")
+            }
+            Button("Add an item") {
+                let item = ItemViewModel(item: Item(title: "Orange"))
+                self.itemLists.append(item)
             }
         }
     }
@@ -26,13 +30,12 @@ struct ContentView: View {
 ///Define a new struct
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(itemList: [
-           ItemViewModel(item: Item(title: "Watermelon")),
-           ItemViewModel(item: Item(title: "Peach")),
-           ItemViewModel(item: Item(title: "Rockmelon")),
-           ItemViewModel(item: Item(title: "Strawberry")),
-           ItemViewModel(item: Item(title: "Apple")),
-        
+        ContentView(itemLists: [
+            ItemViewModel(item: Item(title: "Watermelon")),
+            ItemViewModel(item: Item(title: "Peach")),
+            ItemViewModel(item: Item(title: "Rockmelon")),
+            ItemViewModel(item: Item(title: "Strawberry")),
+            ItemViewModel(item: Item(title: "Apple")),
         ])
     }
 }
