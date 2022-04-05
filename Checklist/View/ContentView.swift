@@ -15,30 +15,29 @@ struct ContentView: View {
     
     ///This ia the body of the view
     var body: some View {
-        List {
-            ForEach(itemLists) { itemList in
-                Text("\(itemList.itemTitle)")
+        NavigationView {
+            List {
+                ForEach(itemLists) { itemList in
+                    Text("\(itemList.itemTitle)")
+                }
+                .onDelete { itemNumbers in
+                    itemLists.remove(atOffsets: itemNumbers)
+                }
             }
-            Button("Add an item") {
-                let item = ItemViewModel(item: Item(title: "Orange"))
-                self.itemLists.append(item)
+            .navigationTitle("Checklist")
+            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
+                    withAnimation {
+                        self.itemLists.append(ItemViewModel(item: Item(title: "Orange")))
+                    }
+            }, label: {
+                Image(systemName: "plus")
             }
+                                                                       ))
         }
     }
 }
 
-///Define a new struct
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(itemLists: [
-            ItemViewModel(item: Item(title: "Watermelon")),
-            ItemViewModel(item: Item(title: "Peach")),
-            ItemViewModel(item: Item(title: "Rockmelon")),
-            ItemViewModel(item: Item(title: "Strawberry")),
-            ItemViewModel(item: Item(title: "Apple")),
-        ])
-    }
-}
+
 
 
 
