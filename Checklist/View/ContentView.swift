@@ -16,8 +16,6 @@ struct ContentView: View {
     ///This ia the body of the view
     var body: some View {
         VStack {
-            Text("Checklist").bold()
-        
             NavigationView {
                 ItemListView(itemList: itemList)
             }
