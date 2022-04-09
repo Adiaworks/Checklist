@@ -18,6 +18,8 @@
 		8E038A6027EF382D00505684 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E038A5F27EF382D00505684 /* ItemViewModel.swift */; };
 		8EB0900D27FC7926002564C4 /* ItemTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB0900C27FC7926002564C4 /* ItemTitleView.swift */; };
 		8EB0900F27FC7F9F002564C4 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB0900E27FC7F9F002564C4 /* ItemListView.swift */; };
+		8EC03000280193FE00B94B8A /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC02FFF280193FE00B94B8A /* ItemDetailView.swift */; };
+		8EC030022801964A00B94B8A /* ItemListMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC030012801964A00B94B8A /* ItemListMasterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		8E038A5F27EF382D00505684 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		8EB0900C27FC7926002564C4 /* ItemTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTitleView.swift; sourceTree = "<group>"; };
 		8EB0900E27FC7F9F002564C4 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
+		8EC02FFF280193FE00B94B8A /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		8EC030012801964A00B94B8A /* ItemListMasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListMasterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,8 @@
 				8E038A3027E7550100505684 /* ContentView.swift */,
 				8EB0900E27FC7F9F002564C4 /* ItemListView.swift */,
 				8EB0900C27FC7926002564C4 /* ItemTitleView.swift */,
+				8EC02FFF280193FE00B94B8A /* ItemDetailView.swift */,
+				8EC030012801964A00B94B8A /* ItemListMasterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,8 +301,10 @@
 			files = (
 				8EB0900D27FC7926002564C4 /* ItemTitleView.swift in Sources */,
 				8EB0900F27FC7F9F002564C4 /* ItemListView.swift in Sources */,
+				8EC03000280193FE00B94B8A /* ItemDetailView.swift in Sources */,
 				8E038A3127E7550100505684 /* ContentView.swift in Sources */,
 				8E038A6027EF382D00505684 /* ItemViewModel.swift in Sources */,
+				8EC030022801964A00B94B8A /* ItemListMasterView.swift in Sources */,
 				8E038A5E27EF374B00505684 /* Item.swift in Sources */,
 				8E038A2F27E7550100505684 /* ChecklistApp.swift in Sources */,
 			);

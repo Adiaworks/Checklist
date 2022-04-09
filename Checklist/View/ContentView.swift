@@ -14,21 +14,8 @@ struct ContentView: View {
     ///This ia the body of the view
     var body: some View {
         NavigationView {
-            List {
-                ForEach(dates, id: \.self) { date in
-                    Text("\(date)")
-                }.onDelete { itemNumbers in
-                    dates.remove(atOffsets: itemNumbers)
-                }
-            }
-            .navigationTitle("Checklist")
-            .navigationBarItems(leading: EditButton(), trailing: Button(action: {
-                withAnimation {
-                    self.dates.append(Date.now)
-                }
-                }, label: {
-                    Image(systemName: "plus")
-                }))
+            ItemListMasterView(dates: $dates)
+                .navigationTitle("Checklist")
             }
         }
     }
@@ -42,3 +29,7 @@ struct ContentView: View {
 //        ContentView($dates: $dates)
 //    }
 //}
+
+
+
+
