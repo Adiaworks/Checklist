@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct ItemListMasterView: View {
-    @Binding var dates: [Date]
+    @Binding var viewModel: ItemListViewModel
     
     var body: some View {
         List {
-            ForEach(dates, id: \.self) { date in
+            ForEach($viewModel.model, id: \.self) { date in
                 NavigationLink(destination: ItemDetailView(model: date)) {
                     Text("Follow me to the item details")
                 }
             }.onDelete { itemNumbers in
-                dates.remove(atOffsets: itemNumbers)
+                viewModel.remove(atOffsets: itemNumbers)
             }
         }
         .navigationBarItems(leading: EditButton(), trailing: Button(action: {
             withAnimation {
-                self.dates.append(Date.now)
+                viewModel.addElement()
             }
         }, label: {
             Image(systemName: "plus")

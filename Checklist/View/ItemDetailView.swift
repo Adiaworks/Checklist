@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    var model: Date
+    @Binding var model: Date
     
     var body: some View {
         Text("\(model)")
     }
 }
 
-struct ItemDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemDetailView(model: Date.now)
-    }
-}
+///this preview needs to be fixed
+//struct ItemDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ItemDetailView(model: Date.now)
+//    }
+//}

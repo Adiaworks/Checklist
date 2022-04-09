@@ -20,6 +20,7 @@
 		8EB0900F27FC7F9F002564C4 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB0900E27FC7F9F002564C4 /* ItemListView.swift */; };
 		8EC03000280193FE00B94B8A /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC02FFF280193FE00B94B8A /* ItemDetailView.swift */; };
 		8EC030022801964A00B94B8A /* ItemListMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC030012801964A00B94B8A /* ItemListMasterView.swift */; };
+		8EC030042801995700B94B8A /* ItemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC030032801995700B94B8A /* ItemListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		8EB0900E27FC7F9F002564C4 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		8EC02FFF280193FE00B94B8A /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		8EC030012801964A00B94B8A /* ItemListMasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListMasterView.swift; sourceTree = "<group>"; };
+		8EC030032801995700B94B8A /* ItemListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				8E038A5F27EF382D00505684 /* ItemViewModel.swift */,
+				8EC030032801995700B94B8A /* ItemListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				8EB0900F27FC7F9F002564C4 /* ItemListView.swift in Sources */,
 				8EC03000280193FE00B94B8A /* ItemDetailView.swift in Sources */,
 				8E038A3127E7550100505684 /* ContentView.swift in Sources */,
+				8EC030042801995700B94B8A /* ItemListViewModel.swift in Sources */,
 				8E038A6027EF382D00505684 /* ItemViewModel.swift in Sources */,
 				8EC030022801964A00B94B8A /* ItemListMasterView.swift in Sources */,
 				8E038A5E27EF374B00505684 /* Item.swift in Sources */,
