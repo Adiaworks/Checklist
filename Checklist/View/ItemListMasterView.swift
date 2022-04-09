@@ -9,24 +9,28 @@ import SwiftUI
 
 struct ItemListMasterView: View {
     @Binding var viewModel: ItemListViewModel
+    @Environment(\.editMode) var editMode
+    @State var title = ""
     
     var body: some View {
         List {
             ForEach($viewModel.itemViewModel, id: \.self) { itemViewModel in
-                NavigationLink(destination: ItemDetailView(viewModel: itemViewModel)) {
-                    ItemDetailView(viewModel: itemViewModel)
+                NavigationLink(destination: ItemDetailView(viewModel: itemViewModel).navigationBarItems(trailing: EditButton())) {
+                    ItemRowView(viewModel: itemViewModel)
                 }
             }.onDelete { itemNumbers in
                 viewModel.remove(atOffsets: itemNumbers)
             }
-        }
-        .navigationBarItems(leading: EditButton(), trailing: Button(action: {
-            withAnimation {
-                viewModel.addElement()
+            if editMode?.wrappedValue == .active {
+                HStack {
+                    Image(systemName: "plus.circle").foregroundColor(.green)
+                    TextField("Enter new entry name", text: $title) {
+                        viewModel.addElement()
+                        title = ""
+                    }
+                }
             }
-        }, label: {
-            Image(systemName: "plus")
-        }))
+        }
     }
 }
 
