@@ -13,7 +13,9 @@ struct ItemListMasterView: View {
     var body: some View {
         List {
             ForEach(dates, id: \.self) { date in
-                ItemDetailView(model: date)
+                NavigationLink(destination: ItemDetailView(model: date)) {
+                    Text("Follow me to the item details")
+                }
             }.onDelete { itemNumbers in
                 dates.remove(atOffsets: itemNumbers)
             }
