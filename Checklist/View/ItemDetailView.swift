@@ -18,6 +18,6 @@ struct ItemDetailView: View {
 ///this preview needs to be fixed
 //struct ItemDetailView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ItemDetailView(model: Date.now)
+//        ItemDetailView(itemViewModel: Date.now)
 //    }
 //}

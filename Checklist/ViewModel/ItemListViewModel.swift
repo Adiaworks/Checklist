@@ -8,15 +8,15 @@
 import Foundation
 
 struct ItemListViewModel {
-    var model = [Date]()
+    var itemViewModel = [ItemViewModel]()
     
-    ///This function can append the array of model with an instance of Date
+    ///This function can append the array of itemViewModel with an instance of Date
     mutating func addElement() {
-        model.append(Date.now)
+        itemViewModel.insert(ItemViewModel(), at: 0)
     }
     
-    ///This function can remove an element with the specific index from the array of model
+    ///This function can remove an element with the specific index from the array of itemViewModel
     mutating func remove(atOffsets indices: IndexSet) {
-        model.remove(atOffsets: indices)
+        itemViewModel.remove(atOffsets: indices)
     }
 }

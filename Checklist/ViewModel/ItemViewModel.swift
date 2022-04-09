@@ -6,16 +6,9 @@
 //
 import Foundation
 
-///A ViewModel embeded with the model of Item
-struct ItemViewModel: Identifiable {
+///A ViewModel embeded with the itemViewModel of Item
+struct ItemViewModel:Hashable {
     ///Declare item as an Item model
-    var item: Item
+    var model = Date.now
     
-    ///Declare id as a random unique identifiers
-    var id: UUID {item.id}
-    
-    ///Declare the title column of Item model as a string 
-    var itemTitle: String {
-        item.title
-    }
 }

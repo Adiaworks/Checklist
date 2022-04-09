@@ -12,8 +12,8 @@ struct ItemListMasterView: View {
     
     var body: some View {
         List {
-            ForEach($viewModel.model, id: \.self) { date in
-                NavigationLink(destination: ItemDetailView(model: date)) {
+            ForEach($viewModel.itemViewModel, id: \.self) { itemViewModel in
+                NavigationLink(destination: ItemDetailView(model: itemViewModel.model)) {
                     Text("Follow me to the item details")
                 }
             }.onDelete { itemNumbers in
