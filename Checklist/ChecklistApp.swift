@@ -11,12 +11,12 @@ import SwiftUI
 
 ///Define a new struct for this App
 struct ChecklistApp: App {
-    @State var viewModel: [ItemViewModel] = []
+    @State var model: [Date] = []
     
     var body: some Scene {
         WindowGroup {
-            ///Add a $ sign so define a getter and setter for the viewModel which is binded in the contentview 
-            ContentView(itemLists: $viewModel)
+            ///Add a $ sign so define a getter and setter for the viewModel which is binded in the contentview
+            ContentView(dates: $model)
         }
     }
 }
