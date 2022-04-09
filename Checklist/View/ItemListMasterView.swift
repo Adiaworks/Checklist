@@ -13,8 +13,8 @@ struct ItemListMasterView: View {
     var body: some View {
         List {
             ForEach($viewModel.itemViewModel, id: \.self) { itemViewModel in
-                NavigationLink(destination: ItemDetailView(model: itemViewModel.model)) {
-                    Text("Follow me to the item details")
+                NavigationLink(destination: ItemDetailView(viewModel: itemViewModel)) {
+                    ItemDetailView(viewModel: itemViewModel)
                 }
             }.onDelete { itemNumbers in
                 viewModel.remove(atOffsets: itemNumbers)

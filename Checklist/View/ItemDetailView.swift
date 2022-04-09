@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @Binding var model: Date
+    @Binding var viewModel: ItemViewModel
     
     var body: some View {
-        Text("\(model)")
+        Text(viewModel.text)
     }
 }
 

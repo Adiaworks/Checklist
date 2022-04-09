@@ -11,4 +11,10 @@ struct ItemViewModel:Hashable {
     ///Declare item as an Item model
     var model = Date.now
     
+    var text: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .medium
+        return dateFormatter.string(from: model)
+    }
 }
