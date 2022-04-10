@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct DetailListViewModel {
-    var detailListViewModel = [Detail]()
+struct SubitemViewModel {
+    var detailListViewModel = [Subitem]()
     
     ///This function can append the array of detailListViewModel with an instance of Detail
-    mutating func addElement(newDetail: Detail) {
+    mutating func addElement(newDetail: Subitem) {
         detailListViewModel.append(newDetail)
     }
     

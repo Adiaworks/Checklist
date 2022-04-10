@@ -8,7 +8,7 @@
 import Foundation
 
 ///Define a new struct for Detail Model
-struct Detail: Identifiable {
+struct Subitem: Identifiable {
     ///Define the id as a random unique identifier
     var id = UUID()
     
