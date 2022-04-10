@@ -5,6 +5,7 @@
 //  Created by Wen Lyu on 26/3/2022.
 //
 import Foundation
+import SwiftUI
 
 ///A ViewModel embeded with the itemViewModel of Item
 struct ItemViewModel: Identifiable, Hashable {
@@ -16,4 +17,8 @@ struct ItemViewModel: Identifiable, Hashable {
     var itemTitle: String {
         model.title
     }
+    
+//    mutating func editTitle(newTitle: String) {
+//        model.title = newTitle
+//    }
 }

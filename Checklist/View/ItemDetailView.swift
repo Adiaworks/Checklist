@@ -9,9 +9,22 @@ import SwiftUI
 
 struct ItemDetailView: View {
     @Binding var viewModel: ItemViewModel
+    @Environment(\.editMode) var editMode
+    @State var title = ""
     
     var body: some View {
-        Text(viewModel.itemTitle)
+        NavigationView {
+        }
+        .navigationTitle(viewModel.itemTitle)
+//        if editMode?.wrappedValue == .active {
+//            HStack {
+//                Image(systemName: "plus.circle").foregroundColor(.green)
+//                TextField("Enter new entry name:", text: $title) {
+//                    viewModel.editTitle(newTitle: title)
+//                    title = ""
+//                }
+//            }
+//        }
     }
 }
 

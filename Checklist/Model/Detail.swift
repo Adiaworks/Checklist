@@ -1,14 +1,14 @@
 //
-//  Item.swift
+//  Detail.swift
 //  Checklist
 //
-//  Created by Wen Lyu on 26/3/2022.
+//  Created by Wen Lyu on 10/4/2022.
 //
 
 import Foundation
 
-///Define a new struct for Item Model
-struct Item: Identifiable, Hashable {
+///Define a new struct for Detail Model
+struct Detail: Identifiable {
     ///Define the id as a random unique identifier
     var id = UUID()
     

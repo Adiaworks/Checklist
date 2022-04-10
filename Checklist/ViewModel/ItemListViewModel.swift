@@ -10,7 +10,7 @@ import Foundation
 struct ItemListViewModel {
     var itemViewModel = [ItemViewModel]()
     
-    ///This function can append the array of itemViewModel with an instance of Date
+    ///This function can append the array of itemViewModel with an instance of Item
     mutating func addElement() {
         itemViewModel.append(ItemViewModel(model: Item(title: "Checklist")))
     }
