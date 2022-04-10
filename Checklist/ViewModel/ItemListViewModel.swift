@@ -12,7 +12,7 @@ struct ItemListViewModel {
     
     ///This function can append the array of itemViewModel with an instance of Date
     mutating func addElement() {
-        itemViewModel.append(ItemViewModel())
+        itemViewModel.append(ItemViewModel(model: Item(title: "Checklist")))
     }
     
     ///This function can remove an element with the specific index from the array of itemViewModel

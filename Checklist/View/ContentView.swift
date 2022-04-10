@@ -15,8 +15,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ItemListMasterView(viewModel: $viewModel)
-                .navigationTitle("Checklist")
-                .navigationBarItems(leading: EditButton())
+                .navigationTitle("Checklists")
             }
         }
     }

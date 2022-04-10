@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ItemListMasterView: View {
     @Binding var viewModel: ItemListViewModel
-    @Environment(\.editMode) var editMode
-    @State var title = ""
+//    @Environment(\.editMode) var editMode
+//    @State var title = ""
     
     var body: some View {
         List {
@@ -21,16 +21,14 @@ struct ItemListMasterView: View {
             }.onDelete { itemNumbers in
                 viewModel.remove(atOffsets: itemNumbers)
             }
-            if editMode?.wrappedValue == .active {
-                HStack {
-                    Image(systemName: "plus.circle").foregroundColor(.green)
-                    TextField("Enter new entry name", text: $title) {
-                        viewModel.addElement()
-                        title = ""
-                    }
-                }
-            }
         }
+        .navigationBarItems(leading: EditButton(), trailing: Button(action: {
+            withAnimation {
+                viewModel.addElement()
+            }
+        }, label: {
+            Image(systemName: "plus")
+        }))        
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 ///Define a new struct for Item Model
-struct Item: Identifiable {
+struct Item: Identifiable, Hashable {
     ///Define the id as a random unique identifiers
     var id = UUID()
     

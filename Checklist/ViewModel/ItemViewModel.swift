@@ -7,14 +7,13 @@
 import Foundation
 
 ///A ViewModel embeded with the itemViewModel of Item
-struct ItemViewModel:Hashable {
-    ///Declare item as an Item model
-    var model = Date.now
+struct ItemViewModel: Identifiable, Hashable {
+    ///Declare the variable as an Item model
+    var model: Item
     
-    var text: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
-        return dateFormatter.string(from: model)
+    var id: UUID { model.id }
+    
+    var itemTitle: String {
+        model.title
     }
 }

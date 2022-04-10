@@ -11,7 +11,7 @@ struct ItemDetailView: View {
     @Binding var viewModel: ItemViewModel
     
     var body: some View {
-        Text(viewModel.text)
+        Text(viewModel.itemTitle)
     }
 }
 
