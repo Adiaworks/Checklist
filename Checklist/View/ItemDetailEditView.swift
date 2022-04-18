@@ -8,19 +8,16 @@
 import SwiftUI
 
 struct ItemDetailEditView: View {
-    @State var title = "Checklist"
+    @State var title = ""
     
     var body: some View {
-        NavigationView {
-            HStack {
-                Image(systemName: "plus.circle").foregroundColor(.green)
-            }
+        HStack {
+            Image(systemName: "plus.circle").foregroundColor(.green)
             TextField("Enter new entry name: ", text: $title) {
                 //                    viewModel.editElement(indices: myTextField.text)
                 title = ""
             }
         }
-
     }
 }
 
