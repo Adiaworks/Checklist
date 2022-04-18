@@ -19,4 +19,12 @@ struct ItemListViewModel {
     mutating func remove(atOffsets indices: IndexSet) {
         itemViewModel.remove(atOffsets: indices)
     }
+    
+    mutating func reset() {
+
+    }
+    
+    mutating func editElement(atOffsets indices: IndexSet, entry: String) {
+//        itemViewModel(atOffsets: indices).title = entry
+    }
 }

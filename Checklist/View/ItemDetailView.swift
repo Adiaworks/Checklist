@@ -10,12 +10,27 @@ import SwiftUI
 struct ItemDetailView: View {
     @Binding var viewModel: ItemViewModel
     @Environment(\.editMode) var editMode
-    @State var title = ""
+    @State var title = "Checklist"
     
     var body: some View {
-        NavigationView {
+        List {
+            Text(viewModel.itemTitle)
+            if editMode?.wrappedValue == .active {
+                HStack {
+                    Image(systemName: "plus.circle").foregroundColor(.green)
+                    TextField("Enter new entry name: ", text: $title) {
+    //                    viewModel.editElement(indices: myTextField.text)
+                        title = ""
+                    }
+                }
+            }
         }
-        .navigationTitle(viewModel.itemTitle)
+
+
+
+//        NavigationView {
+//        }
+//        .navigationTitle(viewModel.itemTitle)
 //        if editMode?.wrappedValue == .active {
 //            HStack {
 //                Image(systemName: "plus.circle").foregroundColor(.green)

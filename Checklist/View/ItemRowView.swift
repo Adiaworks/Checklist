@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ItemRowView: View {
     @Binding var viewModel: ItemViewModel
+    @Environment(\.editMode) var editMode
+    @State var title = "Checklist"
     
     var body: some View {
         Text(viewModel.itemTitle)
