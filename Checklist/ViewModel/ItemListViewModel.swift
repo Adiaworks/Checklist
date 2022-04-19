@@ -24,7 +24,4 @@ struct ItemListViewModel {
 
     }
     
-    mutating func editElement(atOffsets indices: IndexSet, entry: String) {
-//        itemViewModel(atOffsets: indices).title = entry
-    }
 }

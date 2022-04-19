@@ -21,4 +21,13 @@ struct ItemViewModel: Identifiable, Hashable {
 //    mutating func editTitle(newTitle: String) {
 //        model.title = newTitle
 //    }
+    
+    ///This function can append the array of subitems with a new element
+    mutating func addSubitems(subitem: String) {
+        model.subitems.append(subitem)
+    }
+    
+    mutating func editTitle(entry: String) {
+        model.title = entry
+    }
 }

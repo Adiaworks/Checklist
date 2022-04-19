@@ -10,19 +10,24 @@ import SwiftUI
 struct ItemDetailView: View {
     @Binding var viewModel: ItemViewModel
     @Environment(\.editMode) var editMode
+    @State var title = ""
     
     var body: some View {
         List {
             if editMode?.wrappedValue == .active {
                 HStack {
                     Image(systemName: "note.text")
-                    Text(viewModel.itemTitle)
+                    TextField("\(viewModel.model.title)", text: $viewModel.model.title) {
+                        viewModel.editTitle(entry: viewModel.model.title)
+                            title = ""
+                    }
                 }
-                ItemDetailEditView()
+                ItemDetailEditView(viewModel: $viewModel)
                     .navigationBarItems(leading: Button(action: {
                     print("Cool")//need a reset func here
                 }, label: {
                     Text("Reset").foregroundColor(.red)
+                    .frame(minWidth: 150, alignment: .trailing)
                 }))
             } else {
                 Text(viewModel.itemTitle)

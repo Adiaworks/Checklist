@@ -14,4 +14,6 @@ struct Item: Identifiable, Hashable, Equatable {
     
     ///Define title as a string
     var title: String
+    
+    var subitems = [String]()
 }
