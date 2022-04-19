@@ -10,17 +10,16 @@ import SwiftUI
 struct ItemDetailView: View {
     @Binding var viewModel: ItemViewModel
     @Environment(\.editMode) var editMode
-    @State var title = ""
     
     var body: some View {
+        /// Display the editing view of a checklist
         if editMode?.wrappedValue == .active {
             VStack {
                 HStack {
                     Image(systemName: "note.text")
                     TextField("Enter a new entry", text: $viewModel.model.title) {
                         viewModel.editTitle(entry: viewModel.model.title)
-                            title = ""
-                    }
+                    }.font(.largeTitle)
                 }
                 ItemDetailEditView(viewModel: $viewModel)
                     .navigationBarItems(leading: Button(action: {
@@ -30,36 +29,21 @@ struct ItemDetailView: View {
                     .frame(minWidth: 150, alignment: .trailing)
                 }))
             }
-
         } else {
-            NavigationView {
+            List {
+                ForEach(viewModel.model.subitems, id: \.self) { subitem in
+                    Text(subitem).foregroundColor(.blue)
+                }
             }
             .navigationTitle(viewModel.itemTitle)
-//            Text(viewModel.itemTitle)
         }
     }
 }
 
-
-
-//        NavigationView {
-//        }
-//        .navigationTitle(viewModel.itemTitle)
-//        if editMode?.wrappedValue == .active {
-//            HStack {
-//                Image(systemName: "plus.circle").foregroundColor(.green)
-//                TextField("Enter new entry name:", text: $title) {
-//                    viewModel.editTitle(newTitle: title)
-//                    title = ""
-//                }
-//            }
-//        }
-
 ///this preview needs to be fixed
-//struct ItemDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ItemDetailView(itemViewModel: Date.now)
-//    }
-//}
-
-
+struct ItemDetailView_Previews: PreviewProvider {
+    @State static var viewModel = ItemViewModel(model: Item(title: "Test", subitems: ["strawberry", "apple", "orange"]))
+    static var previews: some View {
+        ItemDetailView(viewModel: $viewModel)
+    }
+}

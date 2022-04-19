@@ -30,4 +30,9 @@ struct ItemViewModel: Identifiable, Hashable {
     mutating func editTitle(entry: String) {
         model.title = entry
     }
+    
+    mutating func removeSubitem(atOffsets indices: IndexSet) {
+        model.subitems.remove(atOffsets: indices)
+    }
 }
+

@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ItemListMasterView: View {
     @Binding var viewModel: ItemListViewModel
-//    @Environment(\.editMode) var editMode
-//    @State var title = ""
     
     var body: some View {
         List {
@@ -32,8 +30,11 @@ struct ItemListMasterView: View {
     }
 }
 
-//struct ItemListMasterView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ItemListMasterView(dates: [Date.now, Date.now])
-//    }
-//}
+/// This is the preview for the ItemListMasterView
+struct ItemListMasterView_Previews: PreviewProvider {
+    @State static var viewModel = ItemListViewModel(itemViewModel: [ItemViewModel(model: Item(title: "Test", subitems: ["strawberry", "apple", "orange"]))])
+    
+    static var previews: some View {
+        ItemListMasterView(viewModel: $viewModel)
+    }
+}

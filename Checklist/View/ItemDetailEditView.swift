@@ -13,14 +13,20 @@ struct ItemDetailEditView: View {
     
     var body: some View {
         List {
+            /// Loop all subitems of a checklist
             ForEach(0..<$viewModel.model.subitems.count) {
                 index in
                 HStack {
-                    Image(systemName: "plus.circle").foregroundColor(.green)
-                    TextField("Enter new entry name", text: $viewModel.model.subitems[index]) {
-//                        viewModel.addSubitems(subitem: $viewModel.model.subitems[index])
+                    TextField("Enter new entry name", text: $viewModel.model.subitems[index])
+                }
+            }.onDelete {itemNumbers in
+                viewModel.removeSubitem(atOffsets: itemNumbers)
+            }
+            HStack {
+                Image(systemName: "plus.circle").foregroundColor(.green)
+                TextField("Enter new entry name:", text: $title) {
+                    viewModel.addSubitems(subitem: title)
                         title = ""
-                    }
                 }
             }
         }
