@@ -13,11 +13,11 @@ struct ItemDetailView: View {
     @State var title = ""
     
     var body: some View {
-        List {
-            if editMode?.wrappedValue == .active {
+        if editMode?.wrappedValue == .active {
+            VStack {
                 HStack {
                     Image(systemName: "note.text")
-                    TextField("\(viewModel.model.title)", text: $viewModel.model.title) {
+                    TextField("Enter a new entry", text: $viewModel.model.title) {
                         viewModel.editTitle(entry: viewModel.model.title)
                             title = ""
                     }
@@ -29,10 +29,16 @@ struct ItemDetailView: View {
                     Text("Reset").foregroundColor(.red)
                     .frame(minWidth: 150, alignment: .trailing)
                 }))
-            } else {
-                Text(viewModel.itemTitle)
             }
+
+        } else {
+            NavigationView {
+            }
+            .navigationTitle(viewModel.itemTitle)
+//            Text(viewModel.itemTitle)
         }
+    }
+}
 
 
 
@@ -48,8 +54,6 @@ struct ItemDetailView: View {
 //                }
 //            }
 //        }
-    }
-}
 
 ///this preview needs to be fixed
 //struct ItemDetailView_Previews: PreviewProvider {
