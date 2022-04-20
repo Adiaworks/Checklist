@@ -14,7 +14,7 @@ struct ItemDetailView: View {
     var body: some View {
         /// Display the editing view of a checklist
         if editMode?.wrappedValue == .active {
-            VStack {
+            VStack(alignment: .leading) {
                 HStack {
                     Image(systemName: "note.text")
                     TextField("Enter a new entry", text: $viewModel.model.title) {
@@ -22,12 +22,12 @@ struct ItemDetailView: View {
                     }.font(.largeTitle)
                 }
                 ItemDetailEditView(viewModel: $viewModel)
-                    .navigationBarItems(leading: Button(action: {
-                    print("Cool")//need a reset func here
-                }, label: {
-                    Text("Reset").foregroundColor(.red)
-                    .frame(minWidth: 150, alignment: .trailing)
-                }))
+//                    .navigationBarItems(leading: Button(action: {
+//                    print("Cool")//need a reset func here
+//                }, label: {
+//                    Text("Reset").foregroundColor(.red)
+//                    .frame(minWidth: 150, alignment: .trailing)
+//                }))
             }
         } else {
             List {

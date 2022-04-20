@@ -24,12 +24,18 @@ struct ItemDetailEditView: View {
             }
             HStack {
                 Image(systemName: "plus.circle").foregroundColor(.green)
-                TextField("Enter new entry name:", text: $title) {
+                TextField("Enter new entry name:", text: $title).onSubmit {
                     viewModel.addSubitems(subitem: title)
                         title = ""
                 }
             }
         }
+        .navigationBarItems(leading: Button(action: {
+            print("Cool")//need a reset func here
+        }, label: {
+            Text("Reset").foregroundColor(.red)
+            .frame(minWidth: 150, alignment: .trailing)
+        }))
     }
 }
 
