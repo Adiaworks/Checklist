@@ -20,10 +20,6 @@ class ItemViewModel: ObservableObject, Identifiable {
         self.model = model
     }
     
-//    mutating func editTitle(newTitle: String) {
-//        model.title = newTitle
-//    }
-    
     /// This function can append the array of subitems with a new element
     func addSubitems(subitem: Subitem) {
         subitems.append(subitem)
