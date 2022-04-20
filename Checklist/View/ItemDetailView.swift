@@ -32,8 +32,31 @@ struct ItemDetailView: View {
             }
         } else {
             List {
-                ForEach(itemViewModel.subitems) { subitem in
-                    Text(subitem.name).foregroundColor(.blue)
+                ForEach(itemViewModel.subitems.indices, id:\.self) { index in
+                    HStack {
+                        Text(itemViewModel.subitems[index].name).foregroundColor(.blue)
+                            .onTapGesture {
+                                if itemViewModel.subitems[index].isTicked == false {
+                                    itemViewModel.subitems[index].isTicked = true
+                                    Image(systemName: "checkmark")
+                                } else {
+                                    itemViewModel.subitems[index].isTicked = false
+                                }
+                            }
+//                        Button(action: {
+//                            itemViewModel.subitems[index].toggle()
+//                        }) {
+//                            if itemViewModel.subitems[index].isTicked == false {
+//                                itemViewModel.subitems[index].isTicked = true
+//                                Image(systemName: "checkmark")
+//                            } else {
+//                                itemViewModel.subitems[index].isTicked = false
+//                            }
+//
+//                        }
+//                        SubitemTickedView(itemViewModel.subitems[index].isTicked)
+//                             .padding(.all, 3)
+                    }
                 }
             }
             .navigationTitle(itemViewModel.model.title)
