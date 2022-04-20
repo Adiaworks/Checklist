@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    @Binding var viewModel: ItemViewModel
+    @ObservedObject var itemViewModel: ItemViewModel
+//    @ObservedObject var subitemListViewModel: SubitemListViewModel
     @Environment(\.editMode) var editMode
     
     var body: some View {
@@ -17,11 +18,11 @@ struct ItemDetailView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Image(systemName: "note.text")
-                    TextField("Enter a new entry", text: $viewModel.model.title) {
-                        viewModel.editTitle(entry: viewModel.model.title)
+                    TextField("Enter a new entry", text: $itemViewModel.model.title) {
+                        itemViewModel.editTitle(entry: itemViewModel.model.title)
                     }.font(.largeTitle)
                 }
-                ItemDetailEditView(viewModel: $viewModel)
+                ItemDetailEditView(itemViewModel: itemViewModel)
 //                    .navigationBarItems(leading: Button(action: {
 //                    print("Cool")//need a reset func here
 //                }, label: {
@@ -31,19 +32,24 @@ struct ItemDetailView: View {
             }
         } else {
             List {
-                ForEach(viewModel.model.subitems, id: \.self) { subitem in
-                    Text(subitem).foregroundColor(.blue)
+                ForEach(itemViewModel.subitems) { subitem in
+                    Text(subitem.name).foregroundColor(.blue)
                 }
             }
-            .navigationTitle(viewModel.itemTitle)
+            .navigationTitle(itemViewModel.model.title)
         }
     }
 }
 
-///this preview needs to be fixed
+///this preview for ItemDetailView
 struct ItemDetailView_Previews: PreviewProvider {
-    @State static var viewModel = ItemViewModel(model: Item(title: "Test", subitems: ["strawberry", "apple", "orange"]))
+    /// Declare this variable as an ItemViewModel
+//    var itemViewModel = ItemViewModel(model: Item(title: "Test"))
+    /// Declare this variable as an SubitemViewModel
+//    var subitemListViewModel = SubitemListViewModel([subitemViewModel: SubitemViewModel(model: Subitem(name: "Sugar", isTicked: false))])
+    
+    /// This is the previews
     static var previews: some View {
-        ItemDetailView(viewModel: $viewModel)
+        ItemDetailView(itemViewModel: ItemViewModel(model: Item(title: "Test")))
     }
 }

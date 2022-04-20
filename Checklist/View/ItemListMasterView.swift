@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct ItemListMasterView: View {
-    @Binding var viewModel: ItemListViewModel
+    @ObservedObject var itemListViewModel: ItemListViewModel
     
     var body: some View {
         List {
-            ForEach($viewModel.itemViewModel, id: \.self) { itemViewModel in
-                NavigationLink(destination: ItemDetailView(viewModel: itemViewModel).navigationBarItems(trailing: EditButton())) {
+            ForEach(itemListViewModel.itemViewModel) { itemViewModel in
+                NavigationLink(destination: ItemDetailView(itemViewModel: itemViewModel).navigationBarItems(trailing: EditButton())) {
                     ItemRowView(viewModel: itemViewModel)
                 }
             }.onDelete { itemNumbers in
-                viewModel.remove(atOffsets: itemNumbers)
+                itemListViewModel.remove(atOffsets: itemNumbers)
             }
         }
         .navigationBarItems(leading: EditButton(), trailing: Button(action: {
             withAnimation {
-                viewModel.addElement()
+                itemListViewModel.addElement()
             }
         }, label: {
             Image(systemName: "plus")
@@ -30,11 +30,11 @@ struct ItemListMasterView: View {
     }
 }
 
-/// This is the preview for the ItemListMasterView
-struct ItemListMasterView_Previews: PreviewProvider {
-    @State static var viewModel = ItemListViewModel(itemViewModel: [ItemViewModel(model: Item(title: "Test", subitems: ["strawberry", "apple", "orange"]))])
-    
-    static var previews: some View {
-        ItemListMasterView(viewModel: $viewModel)
-    }
-}
+///// This is the preview for the ItemListMasterView
+//struct ItemListMasterView_Previews: PreviewProvider {
+////    static var itemListViewModel = ItemListViewModel([itemViewModel: ItemViewModel(model: Item(title: "Test"))])
+//
+//    static var previews: some View {
+//        ItemListMasterView(itemListViewModel: ItemListViewModel([itemViewModel: ItemViewModel(model: Item(title: "Test"))]))
+//    }
+//}

@@ -8,10 +8,16 @@
 import Foundation
 
 ///Define a new struct for Detail Model
-struct Subitem: Identifiable {
-    ///Define the id as a random unique identifier
-    var id = UUID()
+class Subitem: Identifiable, ObservableObject {
+    /// Define the variable as a string
+    @Published var name: String
     
-    ///Define title as a string
-    var title: String
+    /// Define the variable as a bool
+    @Published var isTicked: Bool = false
+    
+    /// Initialise this class
+    init(name: String, isTicked: Bool) {
+        self.name = name
+        self.isTicked = isTicked
+    }
 }

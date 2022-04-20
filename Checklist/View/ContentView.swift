@@ -9,12 +9,12 @@ import SwiftUI
 
 ///Define a new struct
 struct ContentView: View {
-    @Binding var viewModel: ItemListViewModel
+    @ObservedObject var itemListViewModel: ItemListViewModel
     
     ///This ia the body of the view
     var body: some View {
         NavigationView {
-            ItemListMasterView(viewModel: $viewModel)
+            ItemListMasterView(itemListViewModel: itemListViewModel)
                 .navigationTitle("Checklists")
             }
         }
@@ -24,7 +24,7 @@ struct ContentView: View {
 /////Define a new struct
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ContentView(viewModel: $viewModel)
+//        ContentView(itemViewModel: $viewModel)
 //    }
 //}
 

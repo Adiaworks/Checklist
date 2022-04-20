@@ -8,31 +8,35 @@ import Foundation
 import SwiftUI
 
 ///A ViewModel embeded with the itemViewModel of Item
-struct ItemViewModel: Identifiable, Hashable {
-    ///Declare the variable as an Item model
-    var model: Item
+class ItemViewModel: ObservableObject, Identifiable {
+    /// Declare the variable as an Item model
+    @Published var model: Item
     
-    var id: UUID { model.id }
+    /// Declare the variable as an array which consists of subitems
+    @Published var subitems = [Subitem]()
     
-    var itemTitle: String {
-        model.title
+    /// Initialise this class
+    init(model: Item) {
+        self.model = model
     }
     
 //    mutating func editTitle(newTitle: String) {
 //        model.title = newTitle
 //    }
     
-    ///This function can append the array of subitems with a new element
-    mutating func addSubitems(subitem: String) {
-        model.subitems.append(subitem)
+    /// This function can append the array of subitems with a new element
+    func addSubitems(subitem: Subitem) {
+        subitems.append(subitem)
     }
     
-    mutating func editTitle(entry: String) {
+    /// This function transfer the old value of title to new value
+    func editTitle(entry: String) {
         model.title = entry
     }
     
-    mutating func removeSubitem(atOffsets indices: IndexSet) {
-        model.subitems.remove(atOffsets: indices)
+    /// This function remove an element from the array of subitems
+    func removeSubitem(atOffsets indices: IndexSet) {
+        subitems.remove(atOffsets: indices)
     }
 }
 

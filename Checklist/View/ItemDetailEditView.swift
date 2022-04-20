@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct ItemDetailEditView: View {
-    @Binding var viewModel: ItemViewModel
+    @ObservedObject var itemViewModel: ItemViewModel
     @State var title = ""
     
     var body: some View {
         List {
             /// Loop all subitems of a checklist
-            ForEach(0..<$viewModel.model.subitems.count) {
+            ForEach(itemViewModel.subitems.indices, id:\.self) {
                 index in
                 HStack {
-                    TextField("Enter new entry name", text: $viewModel.model.subitems[index])
+                    TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
                 }
             }.onDelete {itemNumbers in
-                viewModel.removeSubitem(atOffsets: itemNumbers)
+                itemViewModel.removeSubitem(atOffsets: itemNumbers)
             }
             HStack {
                 Image(systemName: "plus.circle").foregroundColor(.green)
                 TextField("Enter new entry name:", text: $title).onSubmit {
-                    viewModel.addSubitems(subitem: title)
+                    itemViewModel.addSubitems(subitem: Subitem(name: title, isTicked: false))
                         title = ""
                 }
             }
@@ -40,9 +40,9 @@ struct ItemDetailEditView: View {
 }
 
 struct ItemDetailEditView_Previews: PreviewProvider {
-    @State static var viewModel = ItemViewModel(model: Item(title: "Test", subitems: ["strawberry", "apple", "orange"]))
+//    @State static var itemViewModel = ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Ginger", isTicked: false), Subitem(name: "Garlic", isTicked: false)])
     
     static var previews: some View {
-        ItemDetailEditView(viewModel: $viewModel)
+        ItemDetailEditView(itemViewModel: ItemViewModel(model: Item(title: "Test")))
     }
 }

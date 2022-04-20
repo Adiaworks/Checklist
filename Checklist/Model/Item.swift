@@ -8,12 +8,12 @@
 import Foundation
 
 ///Define a new struct for Item Model
-struct Item: Identifiable, Hashable, Equatable {
-    ///Define the id as a random unique identifier
-    var id = UUID()
-    
+class Item: Identifiable, ObservableObject {
     ///Define title as a string
-    var title: String
+    @Published var title: String
     
-    var subitems = [String]()
+    /// Initialise this class
+    init(title: String) {
+        self.title = title
+    }
 }
