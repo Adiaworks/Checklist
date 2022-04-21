@@ -23,12 +23,23 @@ struct ItemDetailEditView: View {
                 /// Loop all subitems of a checklist
                 ForEach(itemViewModel.subitems.indices, id:\.self) {
                     index in
-                    TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
+                    HStack {
+                        if itemViewModel.subitems[index].isTicked {
+                            TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
+                            Spacer()
+                            Image(systemName: "checkmark").foregroundColor(.blue)
+                        } else {
+                            TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
+                            Spacer()
+                        }
+                    }.contentShape(Rectangle())
+                    .onTapGesture {
+                        itemViewModel.changeCheckmark(index: index)
+                        itemViewModel.objectWillChange.send()
+                    }
+                    
                 }.onDelete {itemNumbers in
                     itemViewModel.removeSubitem(atOffsets: itemNumbers)
-                }.onMove { (indexSet, index) in
-                    self.itemViewModel.subitems.move(fromOffsets: indexSet,
-                                        toOffset: index)
                 }
                 HStack {
                     Image(systemName: "plus.circle").foregroundColor(.green)

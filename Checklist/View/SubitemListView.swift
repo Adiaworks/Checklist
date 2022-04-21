@@ -12,6 +12,7 @@ struct SubitemListView: View {
     
     var body: some View {
         List {
+            /// Loop all subitems
             ForEach(itemViewModel.subitems.indices, id:\.self) { index in
                 HStack {
                     if itemViewModel.subitems[index].isTicked {
