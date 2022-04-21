@@ -26,6 +26,9 @@ struct ItemDetailEditView: View {
                     TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
                 }.onDelete {itemNumbers in
                     itemViewModel.removeSubitem(atOffsets: itemNumbers)
+                }.onMove { (indexSet, index) in
+                    self.itemViewModel.subitems.move(fromOffsets: indexSet,
+                                        toOffset: index)
                 }
                 HStack {
                     Image(systemName: "plus.circle").foregroundColor(.green)

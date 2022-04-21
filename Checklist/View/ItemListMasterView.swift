@@ -18,6 +18,9 @@ struct ItemListMasterView: View {
                 }
             }.onDelete { itemNumbers in
                 itemListViewModel.remove(atOffsets: itemNumbers)
+            }.onMove { (indexSet, index) in
+                self.itemListViewModel.itemViewModel.move(fromOffsets: indexSet,
+                                    toOffset: index)
             }
         }
         .navigationBarItems(leading: EditButton(), trailing: Button(action: {
