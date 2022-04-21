@@ -12,30 +12,37 @@ struct ItemDetailEditView: View {
     @State var title = ""
     
     var body: some View {
-        List {
-            /// Loop all subitems of a checklist
-            ForEach(itemViewModel.subitems.indices, id:\.self) {
-                index in
-                HStack {
-                    TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
-                }
-            }.onDelete {itemNumbers in
-                itemViewModel.removeSubitem(atOffsets: itemNumbers)
-            }
+        VStack(alignment: .leading) {
             HStack {
-                Image(systemName: "plus.circle").foregroundColor(.green)
-                TextField("Enter new entry name:", text: $title).onSubmit {
-                    itemViewModel.addSubitems(subitem: Subitem(name: title, isTicked: false))
-                        title = ""
+                Image(systemName: "note.text")
+                TextField("Enter a new entry", text: $itemViewModel.model.title) {
+                    itemViewModel.editTitle(entry: itemViewModel.model.title)
+                }.font(.largeTitle)
+            }
+            List {
+                /// Loop all subitems of a checklist
+                ForEach(itemViewModel.subitems.indices, id:\.self) {
+                    index in
+                    TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
+                }.onDelete {itemNumbers in
+                    itemViewModel.removeSubitem(atOffsets: itemNumbers)
+                }
+                HStack {
+                    Image(systemName: "plus.circle").foregroundColor(.green)
+                    TextField("Enter new entry name:", text: $title).onSubmit {
+                        itemViewModel.addSubitems(subitem: Subitem(name: title, isTicked: false))
+                            title = ""
+                    }
                 }
             }
+            .navigationBarItems(leading: Button(action: {
+                print("Cool")//need a reset func here
+            }, label: {
+                Text("Reset").foregroundColor(.red)
+                .frame(minWidth: 150, alignment: .trailing)
+            }))
         }
-        .navigationBarItems(leading: Button(action: {
-            print("Cool")//need a reset func here
-        }, label: {
-            Text("Reset").foregroundColor(.red)
-            .frame(minWidth: 150, alignment: .trailing)
-        }))
+
     }
 }
 

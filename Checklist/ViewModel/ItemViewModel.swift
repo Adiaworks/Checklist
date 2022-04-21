@@ -34,5 +34,9 @@ class ItemViewModel: ObservableObject, Identifiable {
     func removeSubitem(atOffsets indices: IndexSet) {
         subitems.remove(atOffsets: indices)
     }
+    
+    func changeCheckmark(index: Int) {
+        subitems[index].isTicked = !subitems[index].isTicked
+    }
 }
 
