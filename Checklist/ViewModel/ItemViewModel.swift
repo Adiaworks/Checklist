@@ -38,5 +38,11 @@ class ItemViewModel: ObservableObject, Identifiable {
     func changeCheckmark(index: Int) {
         subitems[index].isTicked = !subitems[index].isTicked
     }
+    
+    func resetCheckmark() {
+        subitems.forEach { subitem in
+            subitem.isTicked = false
+        }
+    }
 }
 
