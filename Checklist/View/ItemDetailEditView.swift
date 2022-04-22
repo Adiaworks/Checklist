@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct ItemDetailEditView: View {
+    /// This variable is the ItemViewModel used in this view
     @ObservedObject var itemViewModel: ItemViewModel
+    
+    /// This variable is used in TextField
     @State var title = ""
     
     var body: some View {
@@ -68,8 +71,7 @@ struct ItemDetailEditView: View {
 }
 
 struct ItemDetailEditView_Previews: PreviewProvider {
-//    @State static var itemViewModel = ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Ginger", isTicked: false), Subitem(name: "Garlic", isTicked: false)])
-    
+    /// This is the preview
     static var previews: some View {
         ItemDetailEditView(itemViewModel: ItemViewModel(model: Item(title: "Test")))
     }
