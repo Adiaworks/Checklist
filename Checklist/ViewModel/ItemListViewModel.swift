@@ -11,6 +11,11 @@ class ItemListViewModel: ObservableObject, Identifiable {
     /// Declare this variable as an array which consists of ItemViewModel
     @Published var itemViewModel = [ItemViewModel]()
     
+    /// Initialise the class
+    init(itemViewModel: [ItemViewModel]) {
+        self.itemViewModel = itemViewModel
+    }
+    
     /// This function can append the array of itemViewModel with an instance of Item
     ///
     /// - Returns an array with appended new element
