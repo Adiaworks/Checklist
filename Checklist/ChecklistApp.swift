@@ -12,11 +12,12 @@ import SwiftUI
 
 ///Define a new struct for this App
 struct ChecklistApp: App {
+    /// This variable will be used in this App
     @ObservedObject var itemListViewModel = ItemListViewModel(itemViewModel: [ItemViewModel]())
     
     var body: some Scene {
         WindowGroup {
-            ///Add a $ sign so define a getter and setter for the viewModel which is binded in the contentview
+            /// This is the ContentView of this App
             ContentView(itemListViewModel: ItemListViewModel(itemViewModel: [ItemViewModel]()))
         }
     }

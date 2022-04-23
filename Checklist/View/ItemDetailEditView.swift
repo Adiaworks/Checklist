@@ -48,6 +48,8 @@ struct ItemDetailEditView: View {
                 }.onDelete {itemNumbers in
                     /// Delete one subitem
                     itemViewModel.removeSubitem(atOffsets: itemNumbers)
+                }.onMove { (indexSet, index) in
+                    self.itemViewModel.subitems.move(fromOffsets: indexSet, toOffset: index)
                 }
                 HStack {
                     /// The textfied to add a new subitem

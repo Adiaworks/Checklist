@@ -9,7 +9,7 @@ import SwiftUI
 
 ///Define a new struct
 struct ContentView: View {
-    ///
+    /// This variable will be used in this ContentView
     @ObservedObject var itemListViewModel: ItemListViewModel
     
     ///This ia the body of the view
@@ -24,9 +24,7 @@ struct ContentView: View {
 
 /// Define a new struct
 struct ContentView_Previews: PreviewProvider {
-    /// This variable will be used in the preview
-//    let itemViewModel: [ItemViewModel] = [ItemViewModel(model: Item(title: "Test"))]
-    
+    /// This is the preview    
     static var previews: some View {
         return ContentView(itemListViewModel: ItemListViewModel(itemViewModel: [ItemViewModel(model: Item(title: "Test"))]))
     }
