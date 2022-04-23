@@ -12,17 +12,17 @@ class SubitemListViewModel: ObservableObject {
     @Published var subitemViewModel = [SubitemViewModel]()
     
     ///This function can append the array of subitemViewModel with an instance of Subitem
+    ///
+    /// - Returns an array with appended new element
     func addElement() {
         subitemViewModel.append(SubitemViewModel(model: Subitem(name: "Checklist", isTicked: false)))
     }
     
-    ///This function can remove an element with the specific index from the array of subitemViewModel
+    /// This function can remove an element with the specific index from the array of subitemViewModel
+    ///
+    /// - Parameter indices: the position of the element to be removed
+    /// - Returns an array without the element in the position of indices
     func remove(atOffsets indices: IndexSet) {
         subitemViewModel.remove(atOffsets: indices)
     }
-    
-    func reset() {
-
-    }
-    
 }

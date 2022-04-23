@@ -70,8 +70,8 @@ struct ItemDetailEditView: View {
     }
 }
 
+/// This is the preview
 struct ItemDetailEditView_Previews: PreviewProvider {
-    /// This is the preview
     static var previews: some View {
         ItemDetailEditView(itemViewModel: ItemViewModel(model: Item(title: "Test")))
     }

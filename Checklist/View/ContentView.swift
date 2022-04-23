@@ -21,12 +21,12 @@ struct ContentView: View {
     }
 
 
-/////Define a new struct
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView(itemViewModel: $viewModel)
-//    }
-//}
+/// Define a new struct
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView(itemListViewModel: ItemListViewModel[(itemViewModel: ItemViewModel(model: Item(title: "Test")))])
+    }
+}
 
 
 
