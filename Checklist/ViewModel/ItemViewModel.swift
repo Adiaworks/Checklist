@@ -61,15 +61,40 @@ class ItemViewModel: ObservableObject, Identifiable {
         }
     }
     
+    /// Save the orignal value of isTicked
     func saveOldCheckmark() {
         subitems.forEach { subitem in
             subitem.oldIsTicked = subitem.isTicked
         }
     }
     
+    /// Undo the reset to the checkmark
     func undoResetCheckmark() {
         subitems.forEach { subitem in
             subitem.isTicked = false
+        }
+    }
+    
+    ///
+    static var fileURL: URL {
+        let fileName = "item.json"
+        let fm = FileManager.default
+        guard let documentDir = fm.urls(for: .documentDirectory, in:
+                .userDomainMask).first else { return URL(fileURLWithPath: "/") }
+        let fileURL = documentDir.appendingPathComponent(fileName)
+        return fileURL
+    }
+    
+    ///
+    func save() {
+        do {
+            let data = try JSONEncoder().encode(model)
+            try data.write(to:ItemViewModel.fileURL, options: .atomic)
+            guard let dataString = String(data: data, encoding: .utf8) else {
+                return }
+            print(dataString)
+        } catch {
+            print("Could not write file: \(error)")
         }
     }
 }

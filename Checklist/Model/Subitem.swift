@@ -8,7 +8,7 @@
 import Foundation
 
 ///Define a new struct for Detail Model
-class Subitem: Identifiable, ObservableObject {
+class Subitem: Identifiable, ObservableObject, Decodable, Encodable {
     /// Define the variable as a string
     @Published var name: String
     
@@ -23,4 +23,28 @@ class Subitem: Identifiable, ObservableObject {
         self.name = name
         self.isTicked = isTicked
     }
+    
+    /// Declare enum
+    enum CodingKeys: String, CodingKey, RawRepresentable {
+        case name
+        case isTicked
+        case oldIsTicked
+    }
+    
+    /// Initialise Decoder
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        isTicked = try container.decode(Bool.self, forKey: .isTicked)
+        oldIsTicked = try container.decode(Bool.self, forKey: .oldIsTicked)
+    }
+    
+    /// This function encodes  name, isTicked, and OldIsTicked
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(isTicked, forKey: .isTicked)
+        try container.encode(oldIsTicked, forKey: .oldIsTicked)
+    }
+    
 }
