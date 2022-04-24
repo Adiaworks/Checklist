@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemDetailEditView: View {
     /// This variable is the ItemViewModel used in this view
     @ObservedObject var itemViewModel: ItemViewModel
+    @State private var showUndo = false
     
     /// This variable is used in TextField
     @State var title = ""
@@ -60,14 +61,32 @@ struct ItemDetailEditView: View {
                     }
                 }
             }
-            .navigationBarItems(leading: Button(action: {
-                /// Reset the value of isTicked to false and reload the view page
-                itemViewModel.resetCheckmark()
-                itemViewModel.objectWillChange.send()
-            }, label: {
-                Text("Reset").foregroundColor(.green)
-                .frame(minWidth: 150, alignment: .trailing)
-            }))
+            .navigationBarItems(leading:
+                HStack {
+                    if showUndo {
+                        Button(action: {
+                            /// Reset the value of isTicked to false and reload the view page
+                            itemViewModel.undoResetCheckmark()
+                            showUndo = !showUndo
+                            itemViewModel.objectWillChange.send()
+                        }, label: {
+                            Text(" Undo Reset").foregroundColor(.green)
+                            .frame(minWidth: 150, alignment: .trailing)
+                        })
+                    } else {
+                        Button(action: {
+                            /// Reset the value of isTicked to false and reload the view page
+                            itemViewModel.saveOldCheckmark()
+                            itemViewModel.resetCheckmark()
+                            showUndo = !showUndo
+                            itemViewModel.objectWillChange.send()
+                        }, label: {
+                            Text("Reset").foregroundColor(.red)
+                            .frame(minWidth: 150, alignment: .trailing)
+                        })
+                    }
+                }
+            )
         }
     }
 }

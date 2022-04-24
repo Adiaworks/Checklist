@@ -15,6 +15,9 @@ class Subitem: Identifiable, ObservableObject {
     /// Define the variable as a bool
     @Published var isTicked: Bool = false
     
+    /// Define the variable as a bool
+    @Published var oldIsTicked: Bool = false
+    
     /// Initialise this class
     init(name: String, isTicked: Bool) {
         self.name = name

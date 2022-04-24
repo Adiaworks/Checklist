@@ -60,5 +60,17 @@ class ItemViewModel: ObservableObject, Identifiable {
             subitem.isTicked = false
         }
     }
+    
+    func saveOldCheckmark() {
+        subitems.forEach { subitem in
+            subitem.oldIsTicked = subitem.isTicked
+        }
+    }
+    
+    func undoResetCheckmark() {
+        subitems.forEach { subitem in
+            subitem.isTicked = false
+        }
+    }
 }
 
