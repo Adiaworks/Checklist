@@ -8,7 +8,7 @@ import Foundation
 import SwiftUI
 
 ///A ViewModel embeded with the itemViewModel of Item
-class ItemViewModel: ObservableObject, Identifiable {
+class ItemViewModel: ObservableObject, Identifiable, Encodable, Decodable {
     /// Declare the variable as an Item model
     @Published var model: Item
     
@@ -16,8 +16,9 @@ class ItemViewModel: ObservableObject, Identifiable {
     @Published var subitems = [Subitem]()
     
     /// Initialise this class
-    init(model: Item) {
+    init(model: Item, subitems: [Subitem]) {
         self.model = model
+        self.subitems = subitems
     }
     
     /// This function can append the array of subitems with a new element
@@ -71,31 +72,28 @@ class ItemViewModel: ObservableObject, Identifiable {
     /// Undo the reset to the checkmark
     func undoResetCheckmark() {
         subitems.forEach { subitem in
-            subitem.isTicked = false
+            subitem.isTicked = subitem.oldIsTicked
         }
     }
     
-    ///
-    static var fileURL: URL {
-        let fileName = "item.json"
-        let fm = FileManager.default
-        guard let documentDir = fm.urls(for: .documentDirectory, in:
-                .userDomainMask).first else { return URL(fileURLWithPath: "/") }
-        let fileURL = documentDir.appendingPathComponent(fileName)
-        return fileURL
+    /// Declare enum
+    enum CodingKeys: String, CodingKey, RawRepresentable {
+        case model
+        case subitems
     }
     
-    ///
-    func save() {
-        do {
-            let data = try JSONEncoder().encode(model)
-            try data.write(to:ItemViewModel.fileURL, options: .atomic)
-            guard let dataString = String(data: data, encoding: .utf8) else {
-                return }
-            print(dataString)
-        } catch {
-            print("Could not write file: \(error)")
-        }
+    /// Initialise Decoder
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        model = try container.decode(Item.self, forKey: .model)
+        subitems = try container.decode([Subitem].self, forKey: .subitems)
+    }
+    
+    /// This function encodes  name, isTicked, and OldIsTicked
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(model, forKey: .model)
+        try container.encode(subitems, forKey: .subitems)
     }
 }
 

@@ -26,6 +26,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     /// This is the preview    
     static var previews: some View {
-        return ContentView(itemListViewModel: ItemListViewModel(itemViewModel: [ItemViewModel(model: Item(title: "Test"))]))
+        return ContentView(itemListViewModel: ItemListViewModel(itemViewModel: [ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)])]))
     }
 }

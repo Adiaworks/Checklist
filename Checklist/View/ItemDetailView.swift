@@ -26,7 +26,7 @@ struct ItemDetailView: View {
 struct ItemDetailView_Previews: PreviewProvider {
     /// This is the previews
     static var previews: some View {
-        ItemDetailView(itemViewModel: ItemViewModel(model: Item(title: "Test")))
+        ItemDetailView(itemViewModel: ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)]))
     }
 }
 

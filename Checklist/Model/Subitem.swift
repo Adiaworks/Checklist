@@ -22,6 +22,7 @@ class Subitem: Identifiable, ObservableObject, Decodable, Encodable {
     init(name: String, isTicked: Bool) {
         self.name = name
         self.isTicked = isTicked
+        self.oldIsTicked = oldIsTicked
     }
     
     /// Declare enum
@@ -46,5 +47,4 @@ class Subitem: Identifiable, ObservableObject, Decodable, Encodable {
         try container.encode(isTicked, forKey: .isTicked)
         try container.encode(oldIsTicked, forKey: .oldIsTicked)
     }
-    
 }

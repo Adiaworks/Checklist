@@ -40,6 +40,6 @@ struct SubitemListView: View {
 
 struct SubitemListView_Previews: PreviewProvider {
     static var previews: some View {
-        SubitemListView(itemViewModel: ItemViewModel(model: Item(title: "Test")))
+        SubitemListView(itemViewModel: ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)]))
     }
 }
