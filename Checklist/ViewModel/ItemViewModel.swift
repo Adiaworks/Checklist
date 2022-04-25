@@ -45,6 +45,15 @@ class ItemViewModel: ObservableObject, Identifiable, Encodable, Decodable {
         subitems.remove(atOffsets: indices)
     }
     
+    /// This function transfer the old value of name to new value
+    ///
+    /// - Parameter index: Int
+    /// - Parameter entry: a new string to be assigned to the title
+    /// - Returns the name with new value
+    func editSubitemName(index: Int, entry: String) {
+        subitems[index].name = entry
+    }
+
     /// This function change the value of isTicked
     ///
     /// - Parameter index: the index of the target checkmark to be changed

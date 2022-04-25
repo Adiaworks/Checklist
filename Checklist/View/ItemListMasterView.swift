@@ -8,23 +8,32 @@
 import SwiftUI
 
 struct ItemListMasterView: View {
+    /// Declare the variable as an ItemListViewModel
     @ObservedObject var itemListViewModel: ItemListViewModel
     
+    /// Declare the variable as a view
     var body: some View {
+        /// Loop all the checklists in this App
         List {
+            /// Display every checklist
             ForEach(itemListViewModel.itemViewModel) { itemViewModel in
-                NavigationLink(destination: ItemDetailView(itemViewModel: itemViewModel).navigationBarItems(trailing: EditButton())) {
+                NavigationLink(destination: ItemDetailView(itemListViewModel: itemListViewModel, itemViewModel: itemViewModel).navigationBarItems(trailing: EditButton())) {
                     ItemRowView(viewModel: itemViewModel)
                 }
-            }.onDelete { itemNumbers in
+            }///Delete a checklist
+            .onDelete { itemNumbers in
                 itemListViewModel.remove(atOffsets: itemNumbers)
-            }.onMove { (indexSet, index) in
+                itemListViewModel.save()
+            }/// Move the position of a checklist
+            .onMove { (indexSet, index) in
                 self.itemListViewModel.itemViewModel.move(fromOffsets: indexSet, toOffset: index)
+                itemListViewModel.save()
             }
-        }
+        }/// Edit button and plus button in the navigation bar
         .navigationBarItems(leading: EditButton(), trailing: Button(action: {
             withAnimation {
                 itemListViewModel.addElement()
+                itemListViewModel.save()
             }
         }, label: {
             Image(systemName: "plus")
@@ -32,11 +41,13 @@ struct ItemListMasterView: View {
     }
 }
 
-///// This is the preview for the ItemListMasterView
-//struct ItemListMasterView_Previews: PreviewProvider {
-////    static var itemListViewModel = ItemListViewModel([itemViewModel: ItemViewModel(model: Item(title: "Test"))])
-//
-//    static var previews: some View {
-//        ItemListMasterView(itemListViewModel: ItemListViewModel([itemViewModel: ItemViewModel(model: Item(title: "Test"))]))
-//    }
-//}
+/// This is the preview for the ItemListMasterView
+struct ItemListMasterView_Previews: PreviewProvider {
+    static var previews: some View {
+        ItemListMasterView(
+            itemListViewModel: ItemListViewModel(
+                itemViewModel: [ItemViewModel(
+                        model: Item(title: "Test"),
+                        subitems: [Subitem(name: "Subitem", isTicked: false)])]))
+    }
+}

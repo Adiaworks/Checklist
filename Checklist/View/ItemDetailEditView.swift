@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ItemDetailEditView: View {
+    /// This variable is the ItemListViewModel used in this view
+    @ObservedObject var itemListViewModel: ItemListViewModel
+    
     /// This variable is the ItemViewModel used in this view
     @ObservedObject var itemViewModel: ItemViewModel
+    
+    /// Delcare this variable's value as false
     @State private var showUndo = false
     
     /// This variable is used in TextField
     @State var title = ""
     
+    /// Declare the variable as a view
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -22,6 +28,7 @@ struct ItemDetailEditView: View {
                 Image(systemName: "note.text")
                 TextField("Enter a new entry", text: $itemViewModel.model.title) {
                     itemViewModel.editTitle(entry: itemViewModel.model.title)
+                    itemListViewModel.save()
                 }.font(.largeTitle)
             }
             List {
@@ -31,12 +38,18 @@ struct ItemDetailEditView: View {
                     HStack {
                         /// Display subitems with checkmark
                         if itemViewModel.subitems[index].isTicked {
-                            TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
+                            TextField("Enter new entry name", text: $itemViewModel.subitems[index].name) {
+                                itemViewModel.editSubitemName(index: index, entry: itemViewModel.subitems[index].name)
+                                itemListViewModel.save()
+                            }
                             Spacer()
                             Image(systemName: "checkmark").foregroundColor(.blue)
                         } else {
                             /// Display subitems without checkmark
-                            TextField("Enter new entry name", text: $itemViewModel.subitems[index].name)
+                            TextField("Enter new entry name", text: $itemViewModel.subitems[index].name) {
+                                itemViewModel.editSubitemName(index: index, entry: itemViewModel.subitems[index].name)
+                                itemListViewModel.save()
+                            }
                             Spacer()
                         }
                     }.contentShape(Rectangle())
@@ -44,20 +57,24 @@ struct ItemDetailEditView: View {
                         /// Change the value of isTicked and reload the view page
                         itemViewModel.changeCheckmark(index: index)
                         itemViewModel.objectWillChange.send()
+                        itemListViewModel.save()
                     }
                     
                 }.onDelete {itemNumbers in
                     /// Delete one subitem
                     itemViewModel.removeSubitem(atOffsets: itemNumbers)
+                    itemListViewModel.save()
                 }.onMove { (indexSet, index) in
                     self.itemViewModel.subitems.move(fromOffsets: indexSet, toOffset: index)
+                    itemListViewModel.save()
                 }
                 HStack {
                     /// The textfied to add a new subitem
                     Image(systemName: "plus.circle").foregroundColor(.green)
                     TextField("Enter new entry name:", text: $title).onSubmit {
                         itemViewModel.addSubitems(subitem: Subitem(name: title, isTicked: false))
-                            title = ""
+                        itemListViewModel.save()
+                        title = ""
                     }
                 }
             }
@@ -69,6 +86,7 @@ struct ItemDetailEditView: View {
                             itemViewModel.undoResetCheckmark()
                             showUndo = !showUndo
                             itemViewModel.objectWillChange.send()
+                            itemListViewModel.save()
                         }, label: {
                             Text(" Undo Reset").foregroundColor(.green)
                             .frame(minWidth: 150, alignment: .trailing)
@@ -80,6 +98,7 @@ struct ItemDetailEditView: View {
                             itemViewModel.resetCheckmark()
                             showUndo = !showUndo
                             itemViewModel.objectWillChange.send()
+                            itemListViewModel.save()
                         }, label: {
                             Text("Reset").foregroundColor(.red)
                             .frame(minWidth: 150, alignment: .trailing)
@@ -94,6 +113,6 @@ struct ItemDetailEditView: View {
 /// This is the preview
 struct ItemDetailEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailEditView(itemViewModel: ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)]))
+        ItemDetailEditView(itemListViewModel: ItemListViewModel(itemViewModel: [ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)])]), itemViewModel: ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)]))
     }
 }

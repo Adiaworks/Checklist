@@ -8,25 +8,38 @@
 import SwiftUI
 
 struct ItemDetailView: View {
+    /// Declare the variable as an ItemListViewModel
+    @ObservedObject var itemListViewModel: ItemListViewModel
+    
+    /// Declare the variable as an ItemViewModel
     @ObservedObject var itemViewModel: ItemViewModel
-//    @ObservedObject var subitemListViewModel: SubitemListViewModel
+    
+    /// This  variable represents the mode of the present environment
     @Environment(\.editMode) var editMode
     
+    /// Declare the variable as a view
     var body: some View {
         /// Display the editing view of a checklist
         if editMode?.wrappedValue == .active {
-            ItemDetailEditView(itemViewModel: itemViewModel)
+            ItemDetailEditView(itemListViewModel: itemListViewModel, itemViewModel: itemViewModel)
         } else {
-            SubitemListView(itemViewModel: itemViewModel)
+            /// Display a checklist without editing mode
+            SubitemListView(itemListViewModel: itemListViewModel, itemViewModel: itemViewModel)
         }
     }
 }
 
-///this preview for ItemDetailView
+///This preview is for ItemDetailView
 struct ItemDetailView_Previews: PreviewProvider {
-    /// This is the previews
     static var previews: some View {
-        ItemDetailView(itemViewModel: ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)]))
+        ItemDetailView(
+            itemListViewModel: ItemListViewModel(
+                itemViewModel: [ItemViewModel(
+                    model: Item(title: "Test"),
+                    subitems: [Subitem(name: "Subitem", isTicked: false)])]),
+            itemViewModel: ItemViewModel(
+                model: Item(title: "Test"),
+                subitems: [Subitem(name: "Subitem", isTicked: false)]))
     }
 }
 

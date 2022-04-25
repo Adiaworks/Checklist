@@ -21,10 +21,8 @@ struct ContentView: View {
         }
     }
 
-
-/// Define a new struct
+/// This is the preview    
 struct ContentView_Previews: PreviewProvider {
-    /// This is the preview    
     static var previews: some View {
         return ContentView(itemListViewModel: ItemListViewModel(itemViewModel: [ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)])]))
     }

@@ -9,24 +9,24 @@ import SwiftUI
 
 
 struct ItemRowView: View {
+    /// Declare the variable as an ItemViewModel
     @ObservedObject var viewModel: ItemViewModel
+    
+    /// This  variable represents the mode of the present environment
     @Environment(\.editMode) var editMode
+    
+    /// Declare the variable as an title
     @State var title = "Checklist"
     
+    /// Declare the variable as a view
     var body: some View {
         Text(viewModel.model.title)
     }
 }
 
-///this preview needs to be fixed
-//struct ItemDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ItemDetailView(itemViewModel: Date.now)
-//    }
-//}
-
-//struct ItemRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ItemRowView()
-//    }
-//}
+/// This is the preview for ItemRowView
+struct ItemRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        ItemRowView(viewModel: ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)]))
+    }
+}

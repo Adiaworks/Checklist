@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct SubitemListView: View {
+    /// This variable is the ItemListViewModel used in this view
+    @ObservedObject var itemListViewModel: ItemListViewModel
+    
     /// This variable is the ItemViewModel used in this view
     @ObservedObject var itemViewModel: ItemViewModel
     
+    /// Declare the variable as a view
     var body: some View {
         List {
             /// Loop all subitems
@@ -31,6 +35,7 @@ struct SubitemListView: View {
                     /// Change the value of isTicked
                     itemViewModel.changeCheckmark(index: index)
                     itemViewModel.objectWillChange.send()
+                    itemListViewModel.save()
                 }
             }
         }
@@ -38,8 +43,16 @@ struct SubitemListView: View {
     }
 }
 
+/// This is the preview of SubitemListView
 struct SubitemListView_Previews: PreviewProvider {
     static var previews: some View {
-        SubitemListView(itemViewModel: ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)]))
+        SubitemListView(
+            itemListViewModel: ItemListViewModel(
+                itemViewModel: [ItemViewModel(
+                        model: Item(title: "Test"),
+                        subitems: [Subitem(name: "Subitem", isTicked: false)])]),
+            itemViewModel: ItemViewModel(
+                    model: Item(title: "Test"),
+                    subitems: [Subitem(name: "Subitem", isTicked: false)]))
     }
 }
