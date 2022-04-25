@@ -93,6 +93,7 @@ class ItemViewModel: ObservableObject, Identifiable, Encodable, Decodable {
     
     /// Initialise Decoder
     required init(from decoder: Decoder) throws {
+        /// This variable contain the data of relative CodingKeys
         let container = try decoder.container(keyedBy: CodingKeys.self)
         model = try container.decode(Item.self, forKey: .model)
         subitems = try container.decode([Subitem].self, forKey: .subitems)
@@ -100,6 +101,7 @@ class ItemViewModel: ObservableObject, Identifiable, Encodable, Decodable {
     
     /// This function encodes  name, isTicked, and OldIsTicked
     func encode(to encoder: Encoder) throws {
+        /// This variable contain the data of relative CodingKeys
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(model, forKey: .model)
         try container.encode(subitems, forKey: .subitems)

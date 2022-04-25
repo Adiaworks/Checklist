@@ -34,6 +34,7 @@ class Subitem: Identifiable, ObservableObject, Decodable, Encodable {
     
     /// Initialise Decoder
     required init(from decoder: Decoder) throws {
+        /// This variable contain the data of relative CodingKeys
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
         isTicked = try container.decode(Bool.self, forKey: .isTicked)
@@ -42,6 +43,7 @@ class Subitem: Identifiable, ObservableObject, Decodable, Encodable {
     
     /// This function encodes  name, isTicked, and OldIsTicked
     func encode(to encoder: Encoder) throws {
+        /// This variable contain the data of relative CodingKeys
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(isTicked, forKey: .isTicked)
