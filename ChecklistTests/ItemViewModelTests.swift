@@ -9,16 +9,37 @@ import XCTest
 @testable import Checklist
 
 class ItemViewModelTests: XCTestCase {
+    /// Declare a variable as a string
     let subitemCorrectName = "Peach"
+    
+    /// Declare a variable as a string
     let subitemWrongName = "Pear"
+    
+    /// Declare a variable as a string
     let subitemName = "Peach"
+    
+    /// Declare a variable as a string
     let title = "Checklist"
+    
+    /// Declare a variable as a string
     let testTitle = "Todo list"
+    
+    /// Declare a variable as an Int
     let indices = 0
+    
+    /// Declare a variable as a Bool
     let isTickedFalse = false
+    
+    /// Declare a variable as a Bool
     let isTickedTrue = true
+    
+    /// Declare a variable as an instance of Subitem
     let subitem = Subitem(name: "Peach", isTicked: false)
+    
+    /// Declare a variable as an array which consists of Subitem
     let testSubitems = [Subitem(name: "Apple", isTicked: false)]
+    
+    /// Declare a variable as an array which consists of Item and Subitem
     let itemViewModel = ItemViewModel(
         model: Item(title: "Checklist"),
         subitems: [Subitem(name: "Apple", isTicked: false)]
