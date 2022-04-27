@@ -64,7 +64,7 @@ class ItemViewModel: ObservableObject, Identifiable, Encodable, Decodable {
     
     /// This function reset the value of isTicked
     ///
-    ///  - Returns subitems with flase value of the variable of isTicked
+    /// - Returns subitems with flase value of the variable of isTicked
     func resetCheckmark() {
         subitems.forEach { subitem in
             subitem.isTicked = false

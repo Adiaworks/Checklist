@@ -8,7 +8,7 @@
 import Foundation
 
 ///Define a new struct for Detail Model
-class Subitem: Identifiable, ObservableObject, Decodable, Encodable {
+class Subitem: Identifiable, ObservableObject, Decodable, Encodable, Equatable {
     /// Define the variable as a string
     @Published var name: String
     
@@ -48,5 +48,10 @@ class Subitem: Identifiable, ObservableObject, Decodable, Encodable {
         try container.encode(name, forKey: .name)
         try container.encode(isTicked, forKey: .isTicked)
         try container.encode(oldIsTicked, forKey: .oldIsTicked)
+    }
+    
+    /// Equatable conformance
+    static func == (lhs: Subitem, rhs: Subitem) -> Bool {
+        lhs.name == rhs.name && lhs.isTicked == rhs.isTicked
     }
 }
