@@ -18,14 +18,7 @@ class ChecklistTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    ///Test the Item model
-    func testItemTitle() throws {
-        ///Get an instance of the Item model
-        let item = Item(title:"Peach")
-        
-        ///Assert the item title equals to "Peach"
-        XCTAssertEqual(item.title, "Peach")
-    }
+
 
     /// Test the Subitem model
     func testSubitemName() throws {

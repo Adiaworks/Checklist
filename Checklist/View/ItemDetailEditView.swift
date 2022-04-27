@@ -113,6 +113,13 @@ struct ItemDetailEditView: View {
 /// This is the preview
 struct ItemDetailEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailEditView(itemListViewModel: ItemListViewModel(itemViewModel: [ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)])]), itemViewModel: ItemViewModel(model: Item(title: "Test"), subitems: [Subitem(name: "Subitem", isTicked: false)]))
+        ItemDetailEditView(
+            itemListViewModel: ItemListViewModel(
+                itemViewModel: [ItemViewModel(
+                    model: Item(title: "Test"),
+                    subitems: [Subitem(name: "Subitem", isTicked: false)])]),
+                itemViewModel: ItemViewModel(
+                    model: Item(title: "Test"),
+                    subitems: [Subitem(name: "Subitem", isTicked: false)]))
     }
 }

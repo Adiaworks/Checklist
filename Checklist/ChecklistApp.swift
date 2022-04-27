@@ -6,14 +6,12 @@
 //
 
 import SwiftUI
-
-
 @main
 
 ///Define a new struct for this App
 struct ChecklistApp: App {
     /// This variable will be used in this App
-    @ObservedObject var itemListViewModel = ItemListViewModel(itemViewModel: [ItemViewModel]())
+    @StateObject var itemListViewModel = ItemListViewModel(itemViewModel: [ItemViewModel]())
     
     var body: some Scene {
         WindowGroup {
