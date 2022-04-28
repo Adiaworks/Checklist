@@ -34,7 +34,7 @@ class ItemListViewModelTests: XCTestCase {
     )
     
     /// Declare a variable as an array which consists of ItemViewModel
-    let itemListViewModel = ItemListViewModel(itemViewModel: [ItemViewModel(
+    let testItemListViewModel = ItemListViewModel(itemViewModel: [ItemViewModel(
         model: Item(title: "Checklist"),
         subitems: [Subitem(name: "Apple", isTicked: false)]
     )])
@@ -49,19 +49,17 @@ class ItemListViewModelTests: XCTestCase {
 
     /// Test the function of addElement
     func testAddElement() throws {
-        itemListViewModel.addElement()
-        XCTAssertEqual(itemListViewModel.itemViewModel[1].model.title, title)
-        XCTAssertEqual(itemListViewModel.itemViewModel[1].subitems[0].name, testSubitemName)
-        XCTAssertEqual(itemListViewModel.itemViewModel[1].subitems[0].isTicked, subitemIsTicked)
+        testItemListViewModel.addElement()
+        XCTAssertEqual(testItemListViewModel.itemViewModel[testItemListViewModel.itemViewModel.count - 1].model.title, title)
+        XCTAssertEqual(testItemListViewModel.itemViewModel[testItemListViewModel.itemViewModel.count - 1].subitems[0].name, testSubitemName)
+        XCTAssertEqual(testItemListViewModel.itemViewModel[testItemListViewModel.itemViewModel.count - 1].subitems[0].isTicked, subitemIsTicked)
     }
     
     /// Test the function of remove
     func testRemove() {
-        print(itemListViewModel.itemViewModel.count)
-        itemListViewModel.itemViewModel.remove(atOffsets: IndexSet([0]))
-        itemListViewModel.itemViewModel.remove(atOffsets: IndexSet([0]))
-        itemListViewModel.itemViewModel.remove(atOffsets: IndexSet([0]))
-        XCTAssertTrue(itemListViewModel.itemViewModel.isEmpty)
+        let total = testItemListViewModel.itemViewModel.count
+        testItemListViewModel.itemViewModel.remove(atOffsets: IndexSet([0]))
+        XCTAssertEqual(testItemListViewModel.itemViewModel.count, total-1)
     }
 
     func testPerformanceExample() throws {
@@ -71,4 +69,13 @@ class ItemListViewModelTests: XCTestCase {
         }
     }
 
+    /// Test the JSON
+    func testJSON() {
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(testItemListViewModel)
+        XCTAssertNotNil(data)
+        guard let data = data else {XCTFail() ; return}
+        guard let jsonString = String(data: data, encoding: .utf8) else {XCTFail() ; return }
+        XCTAssertEqual(jsonString, "{\"itemViewModel\":[{\"model\":{\"title\":\"Checklist\"},\"subitems\":[{\"name\":\"Subitem\",\"isTicked\":true,\"oldIsTicked\":false}]},{\"model\":{\"title\":\"Checklist\"},\"subitems\":[{\"name\":\"Subitem\",\"isTicked\":false,\"oldIsTicked\":false}]}]}")
+    }
 }

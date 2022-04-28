@@ -122,12 +122,6 @@ class ItemViewModelTests: XCTestCase {
         itemViewModel.undoResetCheckmark()
         XCTAssertEqual(itemViewModel.subitems[0].isTicked, isTickedFalse)
     }
-    
-    /// Test the function of removeSubitem
-//    func testRemoveSubitem() throws {
-//        itemViewModel.removeSubitem(atOffsets: indices)
-//        XCTAssertNil(itemViewModel.subitems)
-//    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
