@@ -68,14 +68,4 @@ class ItemListViewModelTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
-    /// Test the JSON
-    func testJSON() {
-        let encoder = JSONEncoder()
-        let data = try? encoder.encode(testItemListViewModel)
-        XCTAssertNotNil(data)
-        guard let data = data else {XCTFail() ; return}
-        guard let jsonString = String(data: data, encoding: .utf8) else {XCTFail() ; return }
-        XCTAssertEqual(jsonString, "{\"itemViewModel\":[{\"model\":{\"title\":\"Checklist\"},\"subitems\":[{\"name\":\"Subitem\",\"isTicked\":true,\"oldIsTicked\":false}]},{\"model\":{\"title\":\"Checklist\"},\"subitems\":[{\"name\":\"Subitem\",\"isTicked\":false,\"oldIsTicked\":false}]}]}")
-    }
 }
